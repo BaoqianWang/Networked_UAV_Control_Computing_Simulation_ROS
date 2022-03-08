@@ -1,0 +1,8 @@
+prefix=/home/smile/nac_sim/devel
+
+Name: dji_m100_gazebo
+Description: Description of dji_m100_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

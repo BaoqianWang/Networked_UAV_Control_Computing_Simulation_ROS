@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="wifi_receiver" default="false"/>
+  <xacro:arg name="wifi_transmitter" default="false"/>
+  <xacro:include filename="$(find hector_sensors_description)/urdf/sonar_sensor.urdf.xacro" />
+  <xacro:property name="pi" value="3.1415926535897931" />
+<xacro:property name="id" default="1"/>
+<xacro:arg name="transmitter_id" default="1"/>
+
+  <!-- Main quadrotor link -->
+  <xacro:macro name="quadrotor_base_macro">
+    <link name="base_link">
+      <inertial>
+        <mass value="1.477" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hector_quadrotor_description/meshes/quadrotor/quadrotor_base.dae"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hector_quadrotor_description/meshes/quadrotor/quadrotor_base.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Sonar height sensor -->
+    <xacro:sonar_sensor name="sonar" parent="base_link" ros_topic="sonar_height" update_rate="10" min_range="0.03" max_range="3.0" field_of_view="${40*pi/180}" ray_count="3">
+      <origin xyz="-0.16 0.0 -0.012" rpy="0 ${90*pi/180} 0"/>
+    </xacro:sonar_sensor>
+
+    <!-- Wifi transmitter -->
+    <xacro:if value="$(arg wifi_transmitter)">
+    <gazebo reference="base_link">
+      <sensor name="wirelessTransmitter" type="wireless_transmitter">
+        <plugin name="wifi_router_plugin" filename="libwifirouter.so"/>
+        <always_on>1</always_on>
+        <update_rate>1</update_rate>
+        <visualize>true</visualize>
+        <transceiver>
+          <essid>$(arg transmitter_id)</essid>
+          <frequency>2442.0</frequency>
+          <power>14.5</power>
+          <gain>2.6</gain>
+        </transceiver>
+      </sensor>
+    </gazebo>
+    </xacro:if>
+
+    <!-- Wifi receiver -->
+    <xacro:if value="$(arg wifi_receiver)">
+    <gazebo reference="base_link">
+      <sensor name="wirelessReceiver" type="wireless_receiver">
+        <plugin name="wifi_receiver_plugin" filename="libwifireceiver.so"/>
+        <always_on>1</always_on>
+        <update_rate>1</update_rate>
+        <visualize>true</visualize>
+        <transceiver>
+          <min_frequency>2412.0</min_frequency>
+          <max_frequency>2484.0</max_frequency>
+          <power>14.5</power>
+          <gain>2.5</gain>
+          <sensitivity>-90.0</sensitivity>
+        </transceiver>
+      </sensor>
+    </gazebo>
+    </xacro:if>
+
+
+  </xacro:macro>
+</robot>

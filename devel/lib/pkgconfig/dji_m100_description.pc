@@ -1,0 +1,8 @@
+prefix=/home/smile/nac_sim/devel
+
+Name: dji_m100_description
+Description: Description of dji_m100_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: joint_state_controller robot_state_publisher dji_m100_controllers_gazebo

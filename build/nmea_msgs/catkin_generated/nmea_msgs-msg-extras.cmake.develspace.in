@@ -1,0 +1,2 @@
+set(nmea_msgs_MESSAGE_FILES "/home/smile/nac_sim/src/nmea_msgs/msg/Gpgga.msg;/home/smile/nac_sim/src/nmea_msgs/msg/Gpgsa.msg;/home/smile/nac_sim/src/nmea_msgs/msg/Gpgsv.msg;/home/smile/nac_sim/src/nmea_msgs/msg/GpgsvSatellite.msg;/home/smile/nac_sim/src/nmea_msgs/msg/Gprmc.msg;/home/smile/nac_sim/src/nmea_msgs/msg/Gpgst.msg;/home/smile/nac_sim/src/nmea_msgs/msg/Sentence.msg")
+set(nmea_msgs_SERVICE_FILES "")

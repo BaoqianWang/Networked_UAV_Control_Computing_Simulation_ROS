@@ -1,0 +1,8 @@
+prefix=/home/smile/nac_sim/devel
+
+Name: dji_osdk_ros
+Description: Description of dji_osdk_ros
+Version: 4.0.0
+Cflags: -I/home/smile/nac_sim/devel/include -I/home/smile/nac_sim/src/Onboard-SDK-ROS/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime geometry_msgs nav_msgs std_msgs nmea_msgs
