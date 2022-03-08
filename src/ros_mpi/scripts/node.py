@@ -45,6 +45,7 @@ class Master():
 
 
 class Worker():
+    # test
     def __init__(self, worker_index):
         rospy.init_node('Worker%d' %worker_index, anonymous = True)
         self.pub_topic = 'master'
