@@ -10,8 +10,8 @@
     "/>
   <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
 
-  <arg name="x" default="0.0"/>
-  <arg name="y" default="0.0"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
   <arg name="z" default="0.3"/>
 
   <arg name="wifi_receiver" default="false"/>
@@ -32,10 +32,15 @@
   <param name="base_stabilized_frame" type="string" value="$(arg tf_prefix)/base_stabilized" />
   <param name="base_footprint_frame" type="string" value="$(arg tf_prefix)/base_footprint" />
   <param name="world_frame" type="string" value="$(arg world_frame)" />
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
 
   <!-- start robot state publisher -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
-    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="publish_frequency" type="double" value="200.0" />
   </node>
 
   <!-- publish state and tf -->
@@ -45,6 +50,7 @@
     <param name="tf_prefix" value="$(arg tf_prefix)" if="$(arg use_ground_truth_for_tf)" />
     <param name="tf_prefix" value="$(arg tf_prefix)/ground_truth" unless="$(arg use_ground_truth_for_tf)" />
   </node>
+
   <group if="$(arg use_pose_estimation)">
     <node name="pose_estimation" pkg="hector_quadrotor_pose_estimation" type="hector_quadrotor_pose_estimation" output="screen">
       <rosparam file="$(find hector_quadrotor_pose_estimation)/params/simulation.yaml" />
@@ -70,6 +76,14 @@
     <arg name="controllers" value="$(arg controllers)"/>
   </include>
 
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
   <!-- load actions -->
   <include file="$(find hector_quadrotor_actions)/launch/actions.launch" />
 
@@ -92,5 +106,10 @@
            -z $(arg z)
            -model $(arg name)"
         respawn="false" output="screen"/>
+
+  <node pkg="rosservice" type="rosservice" name="rosservice" args="call --wait /enable_motors true"/>
+  <node name="publish_marker" pkg="pos_controller" type="pub_marker_array.py"/>
+  <node name="publish_path" pkg="pos_controller" type="pub_path.py"/>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d /home/smile/nac_sim/src/hector_quadrotor/hector_quadrotor_gazebo/rviz_cfg/quadrotor_pos.rviz" />
 
 </launch>

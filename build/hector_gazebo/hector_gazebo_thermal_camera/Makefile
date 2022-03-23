@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -89,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -113,17 +112,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -134,6 +122,18 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
+
+# Convenience name for target.
+gazebo_ros_thermal_depth_camera: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
+
+.PHONY : gazebo_ros_thermal_depth_camera
+
+# fast build rule for target.
+gazebo_ros_thermal_depth_camera/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/build
+.PHONY : gazebo_ros_thermal_depth_camera/fast
+
+# Convenience name for target.
 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_camera.dir/rule:
 	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_camera.dir/rule
 .PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_camera.dir/rule
@@ -181,6 +196,36 @@ gazebo_ros_thermal_camera: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles
 gazebo_ros_thermal_camera/fast:
 	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_camera.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_camera.dir/build
 .PHONY : gazebo_ros_thermal_camera/fast
+
+# Convenience name for target.
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_cpp: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_cpp
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_cpp/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+.PHONY : gazebo_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_nodejs: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_nodejs/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
+.PHONY : gazebo_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_plugins_gencfg.dir/rule:
@@ -198,19 +243,49 @@ gazebo_plugins_gencfg/fast:
 .PHONY : gazebo_plugins_gencfg/fast
 
 # Convenience name for target.
-hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule:
-	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
-.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-gazebo_ros_thermal_depth_camera: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/rule
+gazebo_msgs_generate_messages_eus: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
 
-.PHONY : gazebo_ros_thermal_depth_camera
+.PHONY : gazebo_msgs_generate_messages_eus
 
 # fast build rule for target.
-gazebo_ros_thermal_depth_camera/fast:
-	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_ros_thermal_depth_camera.dir/build
-.PHONY : gazebo_ros_thermal_depth_camera/fast
+gazebo_msgs_generate_messages_eus/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
+.PHONY : gazebo_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_lisp: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_lisp
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_lisp/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
+.PHONY : gazebo_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
+	cd /home/smile/nac_sim/build && $(MAKE) -f CMakeFiles/Makefile2 hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+.PHONY : hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_py: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_py
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_py/fast:
+	cd /home/smile/nac_sim/build && $(MAKE) -f hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+.PHONY : gazebo_msgs_generate_messages_py/fast
 
 src/gazebo_ros_thermal_camera_plugin.o: src/gazebo_ros_thermal_camera_plugin.cpp.o
 
@@ -273,15 +348,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... gazebo_ros_thermal_camera"
-	@echo "... gazebo_plugins_gencfg"
+	@echo "... edit_cache"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... gazebo_ros_thermal_depth_camera"
-	@echo "... edit_cache"
+	@echo "... gazebo_ros_thermal_camera"
+	@echo "... gazebo_msgs_generate_messages_cpp"
 	@echo "... rebuild_cache"
+	@echo "... gazebo_msgs_generate_messages_nodejs"
+	@echo "... gazebo_plugins_gencfg"
+	@echo "... gazebo_msgs_generate_messages_eus"
+	@echo "... gazebo_msgs_generate_messages_lisp"
+	@echo "... install"
+	@echo "... gazebo_msgs_generate_messages_py"
 	@echo "... src/gazebo_ros_thermal_camera_plugin.o"
 	@echo "... src/gazebo_ros_thermal_camera_plugin.i"
 	@echo "... src/gazebo_ros_thermal_camera_plugin.s"

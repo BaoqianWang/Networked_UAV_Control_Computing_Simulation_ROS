@@ -18,7 +18,7 @@ if __name__== "__main__":
     num_node = comm.Get_size()
     node_id = comm.Get_rank()
     node_name = MPI.Get_processor_name()
-    max_iteration = 50
+    max_iteration = 5
 
     if node_id == 0:
         master = Master(2, max_iteration, comm)
