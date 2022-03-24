@@ -16,6 +16,7 @@
      <arg name="debug" value="$(arg debug)"/>
    </include>
 
+
    <group ns="uav1">
      <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
        <arg name="name" value="uav1" />
@@ -45,5 +46,5 @@
        <arg name="wifi_transmitter" value="true" />
      </include>
    </group>
-
+<node type="rviz" name="rviz" pkg="rviz" args="-d /home/smile/nac_sim/src/hector_quadrotor/hector_quadrotor_gazebo/rviz_cfg/quadrotor_pos.rviz" />
 </launch>

@@ -8,20 +8,26 @@ from time import sleep
 
 import roslib; roslib.load_manifest(PKG)
 sleep(5)
-rospy.init_node('rviz_marker_array')
+ns = rospy.get_namespace()
+print(ns)
+index = int(ns[-2])
 
-marker_pub = rospy.Publisher("/visualization_marker_array", MarkerArray, queue_size = 2)
 
+rospy.init_node('rviz_marker_array%d' %index)
 filename = '/home/smile/nac_sim/src/pos_controller/scripts/path.txt'
 with open(filename, 'r') as fd:
     path = json.load(fd)
 
+path = path['uav%d'%index]
+
+
+marker_pub = rospy.Publisher("/visualization_marker_array%d" %index, MarkerArray, queue_size = 2)
 markerArray = MarkerArray()
 i = 0
 
 for x, y, z in zip(path['x'], path['y'], path['z']):
     marker = Marker()
-    marker.header.frame_id = "/world"
+    marker.header.frame_id = "/uav%d/world" %index
     marker.header.stamp = rospy.Time.now()
 
     # set shape, Arrow: 0; Cube: 1 ; Sphere: 2 ; Cylinder: 3
